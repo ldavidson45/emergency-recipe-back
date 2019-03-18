@@ -11,24 +11,4 @@ Recipe.remove({}).then(function() {
     instructions: "wash, slice and mix all the ingredients",
     isApproved: true
   });
-
-  Lesson.create({
-    title: String,
-    keyIngredients: [String],
-    servings: Number,
-    prepTime: String,
-    picture: String,
-    instructions: String,
-    isApproved: true
-  });
-
-  Lesson.create({
-    title: String,
-    keyIngredients: [String],
-    servings: Number,
-    prepTime: String,
-    picture: String,
-    instructions: String,
-    isApproved: true
-  });
 });
