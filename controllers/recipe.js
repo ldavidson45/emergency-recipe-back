@@ -5,7 +5,7 @@ const Recipe = mongoose.model("Recipe");
 
 router.get("/", (req, res) => {
   // find and list out all recipes
-  Recipe.find()
+  Recipe.find({ keyIngredients: { $all: req.body } })
     .then(recipes => {
       res.json(recipes);
     })
