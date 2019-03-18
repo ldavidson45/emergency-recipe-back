@@ -31,6 +31,13 @@ router.post("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   // show a single recipe
+  Recipe.findById(req.params.id)
+    .then(recipe => {
+      res.json(recipe);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 router.get("/:id/edit", (req, res) => {
