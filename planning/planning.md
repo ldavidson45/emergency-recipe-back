@@ -23,10 +23,12 @@
 - mongoose
 - method-override
 - node
-- body-Parser
+- body-parser
 - cors
 
 ## Routes
+
+### Recipe
 
 | URL            | Path      | Method | Action  | Description                           |
 | -------------- | --------- | ------ | ------- | ------------------------------------- |
