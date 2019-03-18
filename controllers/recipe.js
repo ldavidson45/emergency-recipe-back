@@ -20,6 +20,13 @@ router.get("/new", (req, res) => {
 
 router.post("/", (req, res) => {
   // create a new recipe in the database
+  Recipe.create(req.body)
+    .then(recipe => {
+      res.json(recipe);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 router.get("/:id", (req, res) => {
