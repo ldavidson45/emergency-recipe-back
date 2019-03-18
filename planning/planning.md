@@ -17,7 +17,7 @@
 - ThumbRating (True/False)
 - RecipeID
 
-## Dependeccies
+## Dependencies
 
 - express
 - mongoose
