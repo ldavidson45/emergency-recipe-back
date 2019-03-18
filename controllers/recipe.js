@@ -4,8 +4,11 @@ const mongoose = require("../models/Recipe");
 const Recipe = mongoose.model("Recipe");
 
 router.get("/", (req, res) => {
-  // find and list out all recipes
-  Recipe.find({ keyIngredients: { $all: req.body } })
+  // find and list out filtered recipes
+  Recipe
+    .find
+    //   { keyIngredients: { $all: req.body } }
+    ()
     .then(recipes => {
       res.json(recipes);
     })
