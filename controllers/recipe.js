@@ -50,6 +50,13 @@ router.put("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
   // delete a recipe in the database
+  Recipe.findByIdAndDelete(req.params.id)
+    .then(recipe => {
+      res.json(recipe);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 module.exports = router;
