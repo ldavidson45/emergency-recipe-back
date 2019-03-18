@@ -16,3 +16,12 @@
 
 - ThumbRating (True/False)
 - RecipeID
+
+## Dependeccies
+
+- express
+- mongoose
+- method-override
+- node
+- body-Parser
+- cors
