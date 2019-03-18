@@ -14,10 +14,6 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/new", (req, res) => {
-  // render form to create a new recipe
-});
-
 router.post("/", (req, res) => {
   // create a new recipe in the database
   Recipe.create(req.body)
@@ -40,12 +36,11 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get("/:id/edit", (req, res) => {
-  // render a form to update a single recipe
-});
-
 router.put("/:id", (req, res) => {
   // update a recipe in the database
+  Recipe.findByIdAndUpdate(req.params.id, req.body).then(recipe => {
+    res.json(recipe);
+  });
 });
 
 router.delete("/:id", (req, res) => {
