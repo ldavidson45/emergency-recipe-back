@@ -1,7 +1,7 @@
-const { Recipe } = require("../models/Recipe");
+const Recipe = require("../models/Recipe");
 
 Recipe.remove({}).then(function() {
-  Lesson.create({
+  Recipe.create({
     title: "tacos",
     keyIngredients: ["onion", "tomato", "beef", "peppers"],
     servings: 3,
