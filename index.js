@@ -9,4 +9,8 @@ app.use(parser.json());
 
 app.use("/api/recipe", recipeController);
 
-app.listen(3000, console.log("listening on Port 3000"));
+app.set("port", process.env.PORT || 3001);
+
+app.listen(app.get("port"), () => {
+  console.log(`✅ PORT: ${app.get("port")} 🌟`);
+});
