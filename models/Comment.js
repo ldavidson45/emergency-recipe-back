@@ -2,11 +2,7 @@ const mongoose = require("../db/connection");
 const Schema = mongoose.Schema;
 
 const Comment = new Schema({
-  recipe: {
-    type: Schema.Types.ObjectId,
-    ref: "Recipe"
-  },
-
+  name: String,
   content: String
 });
 
