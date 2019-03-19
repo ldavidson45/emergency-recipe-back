@@ -3,19 +3,15 @@ const router = express.Router();
 const mongoose = require("../models/Recipe");
 const Recipe = mongoose.model("Recipe");
 var Comment = require("../models/Comment").Comment;
+const Fuse = require("fuse.js");
 
 router.get("/", (req, res) => {
   // find and list out filtered recipes
-  Recipe
-    .find
-    //   { keyIngredients: { $all: req.body } }
-    ()
-    .then(recipes => {
-      res.json(recipes);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  Recipe.find({
+    keyIngredients: { $all: req.body }
+  }).then(recipes => {
+    res.json(recipes);
+  });
 });
 
 router.post("/", (req, res) => {
