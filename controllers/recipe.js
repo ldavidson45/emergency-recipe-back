@@ -9,9 +9,13 @@ router.get("/", (req, res) => {
   // find and list out filtered recipes
   Recipe.find({
     keyIngredients: { $all: req.body }
-  }).then(recipes => {
-    res.json(recipes);
-  });
+  })
+    .then(recipes => {
+      res.json(recipes);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 router.post("/", (req, res) => {
