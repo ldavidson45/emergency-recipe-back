@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("../models/Recipe");
 const Recipe = mongoose.model("Recipe");
+var Comment = require("../models/Comment").Comment;
 
 router.get("/", (req, res) => {
   // find and list out filtered recipes
@@ -31,6 +32,7 @@ router.post("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // show a single recipe
   Recipe.findById(req.params.id)
+    .populate("comments")
     .then(recipe => {
       res.json(recipe);
     })

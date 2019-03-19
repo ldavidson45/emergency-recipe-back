@@ -1,4 +1,5 @@
 const Recipe = require("../models/Recipe");
+const Comment = require("../models/Comment");
 
 Recipe.remove({}).then(function() {
   Recipe.create({
