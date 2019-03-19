@@ -21,7 +21,9 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "fuse.js": "^3.4.4",
     "method-override": "^3.0.0",
-    "mongoose": "^5.4.19"
+    "mongoose": "^5.4.19",
+    "search-index": "^1.0.5"
   }
 }
