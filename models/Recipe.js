@@ -8,7 +8,13 @@ const Recipe = new Schema({
   prepTime: String,
   picture: String,
   instructions: String,
-  isApproved: Boolean
+  isApproved: Boolean,
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ]
 });
 
 module.exports = mongoose.model("Recipe", Recipe);
