@@ -9,10 +9,12 @@ const Recipe = new Schema({
   picture: String,
   instructions: String,
   isApproved: Boolean,
-  recipe: {
-    type: Schema.Types.ObjectId,
-    ref: "Recipe"
-  }
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ]
 });
 
 module.exports = mongoose.model("Recipe", Recipe);
