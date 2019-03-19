@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("../models/Recipe");
 const Recipe = mongoose.model("Recipe");
 var Comment = require("../models/Comment").Comment;
-const Fuse = require("fuse.js");
+// const Fuse = require("fuse.js");
 
 router.get("/", (req, res) => {
   // find and list out filtered recipes
