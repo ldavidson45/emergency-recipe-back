@@ -5,7 +5,7 @@ const Recipe = mongoose.model("Recipe");
 var Comment = require("../models/Comment").Comment;
 // const Fuse = require("fuse.js");
 
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
   // find and list out filtered recipes
   Recipe.find({
     keyIngredients: { $all: req.body }
@@ -18,7 +18,14 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.get("/", (req, res) => {
+  // find and list out filtered recipes
+  Recipe.find().then(recipes => {
+    res.json(recipes);
+  });
+});
+
+router.post("/new", (req, res) => {
   // create a new recipe in the database
   Recipe.create(req.body)
     .then(recipe => {
