@@ -30,12 +30,12 @@
 
 ### Recipe
 
-| URL            | Path      | Method | Action  | Description                           |
-| -------------- | --------- | ------ | ------- | ------------------------------------- |
-| /recipe        | /         | GET    | index   | list all recipes                      |
-| /recipe/new    | /new      | GET    | new     | Render a form to create a new recipe  |
-| /recipe        | /         | POST   | create  | Create new recipe in the database     |
-| /recipe/1      | /:id      | GET    | show    | Show a single recipe                  |
-| /recipe/1/edit | /:id/edit | GET    | edit    | Render form to update a single recipe |
-| /recipe/1      | /:id      | PUT    | update  | Update recipe in the database         |
-| /recipe/1      | /:id      | DELETE | destroy | Delete a recipe                       |
+| URL           | Path | Method | Action  | Description                       |
+| ------------- | ---- | ------ | ------- | --------------------------------- |
+| /api/recipe   | /    | POST   | index   | list all recipes                  |
+| /api/recipe   | /new | POST   | create  | Create new recipe in the database |
+| /api/recipe/1 | /:id | GET    | show    | Show a single recipe              |
+| /api/recipe/1 | /:id | PUT    | update  | Update recipe in the database     |
+| /api/recipe/1 | /:id | DELETE | destroy | Delete a recipe                   |
+
+### To search through recipes by ingredients:
