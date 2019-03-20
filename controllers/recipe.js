@@ -12,64 +12,42 @@ const getAPIurl = "https://www.food2fork.com/api/get?key=";
 const key = config.recipeAPI;
 
 router.get("/seed", (req, res) => {
-  axios
-    .get(searchAPIurl + key + "&q=garlic%20cheese")
-    .then(recipes => {
-      const selectedRecipes = recipes.data.recipes;
-      const ids = selectedRecipes.map(recipe => {
-        return recipe.recipe_id;
-      });
-      res.json(ids);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-
-router.get("/getseeds", (req, res) => {
-  let recipeIds = [
-    "47251",
-    "55babf",
-    "ad7d2f",
-    "32644",
-    "10106",
-    "0ade30",
-    "006d04",
-    "14241",
-    "992e21",
-    "50791",
-    "14198",
-    "0bfca1",
-    "cde4d0",
-    "fc9d2c",
-    "36296",
-    "14242",
-    "34139",
-    "34981",
-    "6410",
-    "02db19",
-    "24553",
-    "6411",
-    "50372",
-    "14239",
-    "52322",
-    "6e8dd0",
-    "d7d315",
-    "ea7d1d",
-    "8670f8",
-    "60bd67"
-  ];
-  for (i = 0; i < recipeIds.length; i++) {
-    let results = [];
+  let count = 30;
+  let i = 0;
+  let arrayRecipes = [];
+  for (i; i < count; i++) {
     axios
-      .get(getAPIurl + key + "&rId=" + recipeIds[i])
+      .get("https://www.themealdb.com/api/json/v1/1/random.php")
       .then(recipe => {
-        results.push(recipe.data);
-        res.json(results);
-      })
-
-      .catch(err => {
-        console.log(err);
+        let selectedRecipe = recipe.data.meals[0];
+        let rando = {
+          title: selectedRecipe.strMeal,
+          keyIngredients: [
+            selectedRecipe.strIngredient1,
+            selectedRecipe.strIngredient2,
+            selectedRecipe.strIngredient3,
+            selectedRecipe.strIngredient4,
+            selectedRecipe.strIngredient5,
+            selectedRecipe.strIngredient6,
+            selectedRecipe.strIngredient7,
+            selectedRecipe.strIngredient8,
+            selectedRecipe.strIngredient9,
+            selectedRecipe.strIngredient10,
+            selectedRecipe.strIngredient11,
+            selectedRecipe.strIngredient12,
+            selectedRecipe.strIngredient13,
+            selectedRecipe.strIngredient14,
+            selectedRecipe.strIngredient15,
+            selectedRecipe.strIngredient16
+          ],
+          servings: null,
+          prepTime: null,
+          picture: selectedRecipe.strMealThumb,
+          instructions: selectedRecipe.strInstructions,
+          isApproved: true
+        };
+        arrayRecipes.push(rando);
+        res.json(arrayRecipes);
       });
   }
 });
