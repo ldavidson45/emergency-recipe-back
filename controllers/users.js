@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jwt-simple");
 const passport = require("../config/passport");
+const bcrypt = require("bcrypt");
 const config = require("../config/config");
 const mongoose = require("../models/User");
 const User = mongoose.model("User");
@@ -54,7 +55,7 @@ router.post("/login", (req, res) => {
   if (req.body.username && req.body.password) {
     User.findOne({ username: req.body.username }).then(user => {
       if (user) {
-        if (user.password === req.body.password) {
+        if (bcrypt.compareSync(req.body.password, user.password)) {
           var payload = {
             id: user.id
           };
