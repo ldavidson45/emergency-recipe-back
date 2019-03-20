@@ -43,4 +43,35 @@ router.post("/signup", (req, res) => {
   }
 });
 
+// user login
+// recieve username and pw inputs from password
+// find user with matching username in db
+// if the user exists, check that the passwords match
+// if they match, create a jwt token with the user id
+// send jwt token back to browser
+
+router.post("/login", (req, res) => {
+  if (req.body.username && req.body.password) {
+    User.findOne({ username: req.body.username }).then(user => {
+      if (user) {
+        if (user.password === req.body.password) {
+          var payload = {
+            id: user.id
+          };
+          var token = jwt.encode(payload, config.jwtSecret);
+          res.json({
+            token: token
+          });
+        } else {
+          res.sendStatus(401);
+        }
+      } else {
+        res.sendStatus(401);
+      }
+    });
+  } else {
+    res.sendStatus(401);
+  }
+});
+
 module.exports = router;
