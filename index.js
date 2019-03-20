@@ -4,9 +4,11 @@ const cors = require("cors");
 const app = express();
 const recipeController = require("./controllers/recipe.js");
 const commentController = require("./controllers/comment.js");
+const passport = require("./config/passport")();
 
 app.use(cors());
 app.use(parser.json());
+app.use(passport.initialize());
 
 app.use("/api/recipe", recipeController);
 app.use("/api/comment", commentController);
