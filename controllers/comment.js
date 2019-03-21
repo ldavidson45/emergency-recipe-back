@@ -16,15 +16,11 @@ router.post("/recipe/:id", (req, res) => {
   });
 });
 
-router.delete("/recipe/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   // delete a comment in the database
-  Comment.findByIdAndDelete(req.params.id)
-    .then(comment => {
-      res.json(comment);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  Comment.findByIdAndDelete(req.params.id).then(comment => {
+    res.json(comment);
+  });
 });
 
 module.exports = router;
