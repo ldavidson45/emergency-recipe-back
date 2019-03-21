@@ -4,7 +4,7 @@ const mongoose = require("../models/Comment");
 const Comment = mongoose.model("Comment");
 const Recipe = mongoose.model("Recipe");
 
-router.post("/:id", (req, res) => {
+router.post("/recipe/:id", (req, res) => {
   Comment.create(req.body).then(comment => {
     Recipe.findById({ _id: req.params.id }).then(recipe => {
       recipe.comments.push(comment._id);
