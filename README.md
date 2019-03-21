@@ -38,12 +38,10 @@ Dependencies should include:
 Once you've forked and cloned the repository, it's easy to get started.
 
 ```
-npm run start
+npm i
 ```
 
-That should kick off a new tab in your browser connecting you to the development server.
 
-You will need to connect it to a frontend. For details on our frontend, take a look at [its repository](https://github.com/pnblake/emergency-recipe-front).
 
 ## Deployment
 
