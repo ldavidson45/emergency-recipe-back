@@ -5,17 +5,17 @@
 ### Recipe
 
 - Title
-- Key Ingredients
+- keyIngredients
 - Servings
 - Prep Time
 - Image
 - Description/Instructions
 - isApproved (true/false)
 
-### Rating
+### Comment
 
-- ThumbRating (True/False)
-- RecipeID
+- Name
+- Content
 
 ## Dependencies
 
@@ -25,6 +25,10 @@
 - node
 - body-parser
 - cors
+- bcrypt
+- passport
+- passport-jwt
+- jwt-simple
 
 ## Routes
 
@@ -38,6 +42,18 @@
 | /api/recipe/1 | /:id | GET    | show    | Show a single recipe                             |
 | /api/recipe/1 | /:id | PUT    | update  | Update recipe in the database                    |
 | /api/recipe/1 | /:id | DELETE | destroy | Delete a recipe                                  |
+
+### Comments
+
+| URL           | Path | Method | Action  | Description                                      |
+| ------------- | ---- | ------ | ------- | ------------------------------------------------ |
+| /api/comment   | /recipe/:id    | GET    | listAll   | list all comments in the db                       |
+| /api/comment   | /    | POST   | filter  | filter all recipes against array of search terms |
+| /api/recipe   | /new | POST   | create  | Create new recipe in the database                |
+| /api/recipe/1 | /:id | GET    | show    | Show a single recipe                             |
+| /api/recipe/1 | /:id | PUT    | update  | Update recipe in the database                    |
+| /api/recipe/1 | /:id | DELETE | destroy | Delete a recipe                                  |
+
 
 ### To search through recipes by ingredients:
 
