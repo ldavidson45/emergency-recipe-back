@@ -7,18 +7,12 @@ var Comment = require("../models/Comment").Comment;
 
 router.post("/", (req, res) => {
   // find and list out filtered recipes
-  Recipe.find()
-    .then(recipes => {
-      const options = {
-        shouldSort: true,
-        includeScore: true,
-        threshold: 0.6,
-        location: 0,
-        distance: 100,
-        maxPatternLength: 32,
-        minMatchCharLength: 1,
-        keys: ["keyIngredients"]
-      };
+  Recipe.find({
+    keyIngredients: { $all: req.body }
+  }).then(recipes => {
+    res.json(recipes);
+  });
+});
 
       const fuse = new Fuse(recipes, options);
 
