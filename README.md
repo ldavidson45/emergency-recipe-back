@@ -39,7 +39,7 @@ TK
 ## Built With
 
 - [Express.js](https://expressjs.com/) - a web application framework for Node.js,
-- [React Materialize](https://react-materialize.github.io/#/) - Material design components for react
+- [MongoDB](https://www.mongodb.com/) - an open-source document database
 
 ## Contributing
 
