@@ -70,7 +70,7 @@ Recipe.create({
 
 Recipe.create({
   title: "guacamole",
-  keyIngredients: ["avocado", "lime", "onion", "jalopeno"],
+  keyIngredients: ["avocado", "lime", "onion", "jalapeno"],
   servings: 3,
   prepTime: "20 minutes",
   picture:

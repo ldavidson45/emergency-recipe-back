@@ -21,8 +21,39 @@ router.post("/", (req, res) => {
       };
 
       const fuse = new Fuse(recipes, options);
+      const terms = req.body;
 
-      res.json(recipes);
+      let resultsMap = {};
+      terms.forEach(term => {
+        const result = fuse.search(term);
+        result.forEach(res => {
+          const id = res.item.id;
+          if (!resultMap[id]) {
+            resultMap[id] = {
+              id,
+              name: res.item.name,
+              matchedIngredients: 1,
+              totalScore: res.score
+            };
+          } else {
+            resultMap[id].matchedIngredients += 1;
+            resultMap[id].totalScore += res.score;
+          }
+        });
+      });
+
+      let results = Object.values(resultMap);
+
+      results.sort((a, b) => {
+        // Sort by `matchedIngredients` first
+        if (a.matchedIngredients < b.matchedIngredients) return 1;
+        if (a.matchedIngredients > b.matchedIngredients) return -1;
+
+        // Sort by `totalScore` next
+        if (a.totalScore > b.totalScore) return 1;
+        if (a.totalScore < b.totalScore) return -1;
+      });
+      res.json(results);
     })
     .catch(err => {
       console.log(err);
