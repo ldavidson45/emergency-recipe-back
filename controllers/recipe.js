@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
 
           if (!resultMap[id]) {
             resultMap[id] = {
-              id,
+              _id: id,
               title: res.item.title,
               keyIngredients: res.item.keyIngredients.filter(Boolean),
               servings: res.item.servings,
