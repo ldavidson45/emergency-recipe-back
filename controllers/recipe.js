@@ -5,6 +5,12 @@ const Recipe = mongoose.model("Recipe");
 var Comment = require("../models/Comment").Comment;
 const Fuse = require("fuse.js");
 
+router.post("/search", (req, res) => {
+  Recipe.find({ keyIngredients: { $all: req.body } }).then(recipes => {
+    res.json(recipes);
+  });
+});
+
 router.post("/", (req, res) => {
   // find and list out filtered recipes
   Recipe.find()
@@ -12,9 +18,10 @@ router.post("/", (req, res) => {
       const options = {
         shouldSort: true,
         includeScore: true,
-        threshold: 0.6,
+        threshold: 0.3,
         location: 0,
         distance: 100,
+        findAllMatches: true,
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: ["keyIngredients"]
@@ -28,6 +35,7 @@ router.post("/", (req, res) => {
         const result = fuse.search(term);
         result.forEach(res => {
           const id = res.item.id;
+          console.log(res.keyIngredients, term);
           // If there's no entry for it, create it
 
           if (!resultMap[id]) {
@@ -58,18 +66,14 @@ router.post("/", (req, res) => {
       // Sort the results by `matchedIngredients` AND `totalScore`
 
       results.sort((a, b) => {
-        // Sort by `matchedIngredients` first
-        if (a.matchedIngredients < b.matchedIngredients) return 1;
-        if (a.matchedIngredients > b.matchedIngredients) return -1;
-
         // sort by remaining ingredients
 
         if (a.remainingIngredients > b.remainingIngredients) return 1;
         if (a.remainingIngredients < b.remainingIngredients) return -1;
 
         // Sort by `totalScore` next
-        if (a.totalScore > b.totalScore) return -1;
-        if (a.totalScore < b.totalScore) return 1;
+        if (a.totalScore > b.totalScore) return 1;
+        if (a.totalScore < b.totalScore) return -1;
       });
       res.json(results);
     })
