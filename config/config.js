@@ -1,7 +1,6 @@
 module.exports = {
-  jwtSecret: "LPJYlammas",
-  jwtSession: {
+  jwtSecret: process.env.jwtSecret || "LPJYlammas",
+  jwtSession: process.env.jwtSession || {
     session: false
-  },
-  recipeAPI: "404c385c39054b196cc74f424918d8d2"
+  }
 };
