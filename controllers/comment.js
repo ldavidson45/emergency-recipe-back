@@ -4,7 +4,7 @@ const mongoose = require("../models/Comment");
 const Comment = mongoose.model("Comment");
 const Recipe = mongoose.model("Recipe");
 
-router.post("/:id", (req, res) => {
+router.post("/recipe/:id", (req, res) => {
   Comment.create(req.body).then(comment => {
     Recipe.findById({ _id: req.params.id }).then(recipe => {
       recipe.comments.push(comment._id);
@@ -13,6 +13,13 @@ router.post("/:id", (req, res) => {
       });
       res.json(recipe);
     });
+  });
+});
+
+router.delete("/:id", (req, res) => {
+  // delete a comment in the database
+  Comment.findByIdAndDelete(req.params.id).then(comment => {
+    res.json(comment);
   });
 });
 
