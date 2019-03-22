@@ -3,25 +3,21 @@ const router = express.Router();
 const mongoose = require("../models/Comment");
 const Comment = mongoose.model("Comment");
 const Recipe = mongoose.model("Recipe");
-const User = mongoose.model("User");
+const User = mongoose.model("Recipe");
 
 router.post("/recipe/:id", (req, res) => {
-  User.findOne({ username: req.body.username })
-    .then(user => {
-      Comment.create({
-        content: req.body.content,
-        username: user._id
+  Comment.create({
+    content: req.body.content,
+    name: req.body.username
+  }).then(comment => {
+    Recipe.findById({ _id: req.params.id }).then(recipe => {
+      recipe.comments.push(comment._id);
+      recipe.save(err => {
+        console.log(err);
       });
-    })
-    .then(comment => {
-      Recipe.findById({ _id: req.params.id }).then(recipe => {
-        recipe.comments.push(comment._id);
-        recipe.save(err => {
-          console.log(err);
-        });
-        res.json(recipe);
-      });
+      res.json(recipe);
     });
+  });
 });
 
 router.delete("/:id", (req, res) => {
