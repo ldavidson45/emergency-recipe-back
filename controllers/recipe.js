@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("../models/Recipe");
 const Recipe = mongoose.model("Recipe");
-const Fuse = require("fuse.js");
 const fuzzySearch = require("./fuzzySearch");
 
 // mongoDB search query (backup for fuzzysearch)

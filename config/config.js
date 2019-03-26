@@ -1,6 +1,6 @@
+require("dotenv").config();
+
 module.exports = {
-  jwtSecret: process.env.jwtSecret || "LPJYlammas",
-  jwtSession: process.env.jwtSession || {
-    session: false
-  }
+  jwtSecret: process.env.JWT_SECRET,
+  jwtSession: process.env.JWT_SESSION
 };
