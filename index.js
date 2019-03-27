@@ -8,7 +8,7 @@ const passport = require("./config/passport")();
 const userController = require("./controllers/users.js");
 
 app.use(cors());
-app.use(parser.json());
+app.use(parser.json(), { useNewUrlParser: true });
 app.use(passport.initialize());
 
 app.use("/api/recipe", recipeController);

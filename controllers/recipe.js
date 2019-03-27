@@ -7,9 +7,13 @@ const fuzzySearch = require("./fuzzySearch");
 // mongoDB search query (backup for fuzzysearch)
 
 router.post("/search", (req, res) => {
-  Recipe.find({ keyIngredients: { $all: req.body } }).then(recipes => {
-    res.json(recipes);
-  });
+  Recipe.find({ keyIngredients: { $all: req.body } })
+    .then(recipes => {
+      res.json(recipes);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 // find and list out filtered recipes with fuzzy search
@@ -27,9 +31,13 @@ router.post("/", (req, res) => {
 
 router.get("/", (req, res) => {
   // find and list out filtered recipes
-  Recipe.find().then(recipes => {
-    res.json(recipes);
-  });
+  Recipe.find()
+    .then(recipes => {
+      res.json(recipes);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 router.post("/new", (req, res) => {
