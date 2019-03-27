@@ -6,6 +6,7 @@ const recipeController = require("./controllers/recipe.js");
 const commentController = require("./controllers/comment.js");
 const passport = require("./config/passport")();
 const userController = require("./controllers/users.js");
+require("dotenv").config();
 
 app.use(cors());
 app.use(parser.json(), { useNewUrlParser: true });
