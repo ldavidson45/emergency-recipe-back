@@ -9,7 +9,7 @@ const userController = require("./controllers/users.js");
 require("dotenv").config();
 
 app.use(cors());
-app.use(parser.json(), { useNewUrlParser: true });
+app.use(parser.json());
 app.use(passport.initialize());
 
 app.use("/api/recipe", recipeController);
