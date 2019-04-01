@@ -22,36 +22,31 @@ module.exports = (recipes, query) => {
   let resultMap = {};
   terms.forEach(term => {
     const result = fuse.search(term);
-    result
-      .forEach(res => {
-        const id = res.item.id;
-        console.log(res.keyIngredients, term);
-        // If there's no entry for it, create it
+    result.forEach(res => {
+      const id = res.item.id;
+      // If there's no entry for it, create it
 
-        if (!resultMap[id]) {
-          resultMap[id] = {
-            _id: id,
-            title: res.item.title,
-            keyIngredients: res.item.keyIngredients.filter(Boolean),
-            servings: res.item.servings,
-            prepTime: res.item.prepTime,
-            picture: res.item.picture,
-            instructions: res.item.instructions,
-            isApproved: res.item.isApproved,
-            comments: res.item.comments,
-            matchedIngredients: 1,
-            totalScore: res.score,
-            remainingIngredients: res.item.keyIngredients.length - 1
-          };
-        } else {
-          resultMap[id].matchedIngredients += 1;
-          resultMap[id].totalScore += res.score;
-          resultMap[id].remainingIngredients -= 1;
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      if (!resultMap[id]) {
+        resultMap[id] = {
+          _id: id,
+          title: res.item.title,
+          keyIngredients: res.item.keyIngredients.filter(Boolean),
+          servings: res.item.servings,
+          prepTime: res.item.prepTime,
+          picture: res.item.picture,
+          instructions: res.item.instructions,
+          isApproved: res.item.isApproved,
+          comments: res.item.comments,
+          matchedIngredients: 1,
+          totalScore: res.score,
+          remainingIngredients: res.item.keyIngredients.length - 1
+        };
+      } else {
+        resultMap[id].matchedIngredients += 1;
+        resultMap[id].totalScore += res.score;
+        resultMap[id].remainingIngredients -= 1;
+      }
+    });
   });
   // Convert map into array. This will make it easier to sort.
 
