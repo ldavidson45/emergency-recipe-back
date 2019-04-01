@@ -29,7 +29,8 @@ router.post("/signup", (req, res) => {
             };
             var token = jwt.encode(payload, config.jwtSecret);
             res.json({
-              token: token
+              token: token,
+              username: newUser.username
             });
           } else {
             res.sendStatus(401);
@@ -61,7 +62,8 @@ router.post("/login", (req, res) => {
           };
           var token = jwt.encode(payload, config.jwtSecret);
           res.json({
-            token: token
+            token: token,
+            username: newUser.username
           });
         } else {
           res.sendStatus(401);
