@@ -5,21 +5,17 @@ const Comment = mongoose.model("Comment");
 const Recipe = mongoose.model("Recipe");
 
 router.post("/recipe/:id", (req, res) => {
-  let newComment = Comment.create({
-    content: req.body.content,
-    name: req.body.name
-  })
-
-    // Recipe.findByIdAndUpdate(req.params.id, {
-    //   $push: { comments:  }
-    // })
-    .then(recipe => {
-      res.json(recipe);
-      console.log(newComment);
+  Comment.create(req.body)
+    .then(comment => {
+      Recipe.findByIdAndUpdate(req.params.id, {
+        $push: { comments: comment._id }
+      }).then(recipe => {
+        res.json(recipe);
+      });
+    })
+    .catch(err => {
+      console.log(err);
     });
-  // .catch(err => {
-  //   console.log(err);
-  // });
 });
 
 router.delete("/:id", (req, res) => {
